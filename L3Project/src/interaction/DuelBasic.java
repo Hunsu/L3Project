@@ -32,11 +32,11 @@ public class DuelBasic implements IDuel {
 	public int realiserCombat() throws RemoteException {
 		Remote ratt = this.getRefAttaquant();
 		IConsole catt = (IConsole) ratt;
-		int vieAtt = catt.getElement().getVie();
+		int vieAtt = catt.getPersonnage().getVie();
 		
 		Remote rdef = this.getRefDefenseur();	
 		IConsole cdef = (IConsole) rdef;
-		int vieDef = cdef.getElement().getVie();
+		int vieDef = cdef.getPersonnage().getVie();
 		
 		if(vieAtt < vieDef)
 			catt.perdreVie(1);

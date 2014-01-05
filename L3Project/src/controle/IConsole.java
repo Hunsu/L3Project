@@ -1,10 +1,11 @@
 package controle;
 
-import individu.Element;
 import interfaceGraphique.VueElement;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import org.personnage.Personnage;
 
 /**
  * Represente le lien Element - Serveur
@@ -40,7 +41,7 @@ public interface IConsole extends Remote {
 	 * Renvoie l'element associe a la console
 	 * @throws RemoteException
 	 */
-	public Element getElement() throws RemoteException;
+	public Personnage getPersonnage() throws RemoteException;
 	
 	/**
 	 * Renvoie la vue de l'element associe a la console 
