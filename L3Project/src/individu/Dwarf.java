@@ -1,6 +1,5 @@
 package individu;
 
-import org.objets.Objet;
 
 public class Dwarf extends Personnage {
 	
@@ -15,7 +14,6 @@ public class Dwarf extends Personnage {
 		this.setAttaque(40);
 		this.setDefense(4);
 		this.setVitesse(30);
-		this.addObjet(new Objet("Har","image",20,30));
 	}
 
 	

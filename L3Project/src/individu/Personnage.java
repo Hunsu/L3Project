@@ -3,9 +3,7 @@ package individu;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.objets.Objet;
-
-public abstract class Personnage implements Serializable{
+public abstract class Personnage extends Element implements Serializable, ICombattant{
 	
 	/**
 	 * 
@@ -18,20 +16,15 @@ public abstract class Personnage implements Serializable{
 	private int argent;
 	private String image;
 	private int vie;
-	ArrayList<Objet> equipements;
+	ArrayList<Integer> equipements;
 	private ArrayList<Integer> personnagesConnus = new ArrayList<Integer>(); 
 
 	public Personnage(String name, String image, int argent) {
-		this.name = name;
+		super(name,image);
 		this.image = image;
 		this.argent=argent;
-		vie = 1;
-		equipements = new ArrayList<Objet>();
+		equipements = new ArrayList<Integer>();
 		
-	}
-	
-	public void addObjet(Objet objet){
-		this.equipements.add(objet);
 	}
 	
 	public String getName(){
@@ -93,6 +86,21 @@ public abstract class Personnage implements Serializable{
 	
 	public String toString(){
 		return this.getName()+"["+this.getVie()+"]";
+	}
+	
+	public void ramasser(int ref) {
+		this.equipements.add(ref);
+		
+	}
+	
+	public void perdre(int s){
+		this.argent -= s;
+		if(s <0)
+			argent = 0;
+	}
+	
+	public void gagner(int s){
+		this.argent += s;
 	}
 	
 	

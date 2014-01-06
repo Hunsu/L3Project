@@ -5,6 +5,7 @@ import interfaceGraphique.VueElement;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import individu.Element;
 import individu.Personnage;
 
 /**
@@ -41,7 +42,7 @@ public interface IConsole extends Remote {
 	 * Renvoie l'element associe a la console
 	 * @throws RemoteException
 	 */
-	public Personnage getPersonnage() throws RemoteException;
+	public Element getElement() throws RemoteException;
 	
 	/**
 	 * Renvoie la vue de l'element associe a la console 

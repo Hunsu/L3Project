@@ -1,6 +1,5 @@
 package individu;
 
-import org.objets.Objet;
 
 public class Mercenaire extends Personnage {
 	
@@ -15,8 +14,9 @@ public class Mercenaire extends Personnage {
 		this.setAttaque(90);
 		this.setDefense(60);
 		this.setVitesse(30);
-		this.addObjet(new Objet("Har","image",20,30));
 		
 	}
+
+	
 
 }

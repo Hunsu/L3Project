@@ -6,7 +6,7 @@ public interface IElement {
 	/**
 	 * Retourne le nom de l'element
 	 */
-	public String getNom();
+	public String getName();
 	
 	/**
 	 * Retourne le nombre de vies de l'element

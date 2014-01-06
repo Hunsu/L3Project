@@ -1,6 +1,5 @@
 package individu;
 
-import org.objets.Objet;
 
 public class Elf extends Personnage {
 	
@@ -15,7 +14,6 @@ public class Elf extends Personnage {
 		this.setAttaque(50);
 		this.setDefense(10);
 		this.setVitesse(30);
-		this.addObjet(new Objet("Har","image",20,30));
 	}
 
 	

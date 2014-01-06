@@ -1,8 +1,10 @@
 package org.objets;
 
+import individu.Element;
+
 import java.io.Serializable;
 
-public class Objet implements Serializable {
+public class Objet extends Element implements Serializable {
 	
 	/**
 	 * 
@@ -14,6 +16,7 @@ public class Objet implements Serializable {
 	private int boostD;
 	
 	public Objet(String name,String image, int attaque, int defence){
+		super(name,-1);
 		this.name = name;
 		this.image = image;
 		this.boostA= attaque;

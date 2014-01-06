@@ -13,10 +13,13 @@ import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import org.objets.Objet;
 
 import serveur.IArene;
 
@@ -101,7 +104,7 @@ public class AreneJPanel extends JPanel {
 					cy = s.getPoint().y * rect.height / 100;
 
 					// construis un oval aux coordonnes cx,cy de taille 8 x 8
-					File file = new File(s.getControleur().getPersonnage().getImage());
+					File file = new File(s.getControleur().getElement().getImage());
 					BufferedImage image = ImageIO.read(file);
 					g.drawImage(image, cx, cy, this);
 

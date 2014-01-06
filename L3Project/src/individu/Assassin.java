@@ -1,6 +1,5 @@
 package individu;
 
-import org.objets.Objet;
 
 public class Assassin extends Personnage {
 	
@@ -15,7 +14,6 @@ public class Assassin extends Personnage {
 		this.setAttaque(120);
 		this.setDefense(50);
 		this.setVitesse(30);
-		this.addObjet(new Objet("Har","image",20,30));
 	}
 	
 

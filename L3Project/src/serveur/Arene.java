@@ -87,9 +87,9 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 							((IConsole) r)
 									.shutDown("Presence sur l'arene trop long. Degage !");
 						} else {
-							Personnage elem = ((IConsole) r).getPersonnage();
+							Element elem = ((IConsole) r).getElement();
 
-							if (elem.getVie() <= 0) {
+							if (elem instanceof Personnage && elem.getVie() <= 0) {
 								System.out.println(elem.getName()
 										+ " est mort...");
 								elements.remove(r);
@@ -183,7 +183,8 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 															// les infos du
 															// client, pourquoi
 															// clonage ??
-				if (elements.get(r).getTTL() == 0) {
+				Element elem = elements.get(r).getControleur().getElement();
+				if ( elem instanceof Personnage && elements.get(r).getTTL() == 0) {
 					elements.remove(r);
 					((IConsole) r)
 							.shutDown("Vous etes reste trop longtemps dans l'arene, vous etes elimine !");

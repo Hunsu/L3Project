@@ -11,8 +11,10 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
-import individu.Personnage;
+import org.objets.Objet;
 
+import individu.Element;
+import individu.Personnage;
 import serveur.IArene;
 import utilitaires.UtilitaireConsole;
 
@@ -28,7 +30,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	private static final int port=5099;	              //port par defaut pour communiquer avec le serveur RMI
 	private Remote serveur = null;                    //le serveur avec lequel le controleur communique
 	private VueElement ve = null;                     //la vue de l'element (pour l'interface graphique)
-	private Personnage elem = null;                      //l'element pour lequel le controleur est cree
+	private Element elem = null;                      //l'element pour lequel le controleur est cree
 	private Hashtable<Integer,VueElement> voisins;    //les vues des voisins sur l'interface graphique
 	private Point pointErrance;                       //le point ou aller errer
 	private int refRMI;                               //la reference (entiere) attribuee par le serveur a la connexion
@@ -41,7 +43,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	 * @param dy la position initiale de l'element sur l'abscisse (interface graphique)
 	 * @throws RemoteException
 	 */
-	public Console(Personnage elem, int dx, int dy) throws RemoteException {
+	public Console(Element elem, int dx, int dy) throws RemoteException {
 		 //appel au constructeur de la super-classe -> il peut etre implicite
 		super();
 		try{
@@ -97,7 +99,8 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		//Hashtable<Integer,VueElement> voisinsInconnus = extraireInconnus(voisins);
 		
 		// Recherche du plus proche, sinon errer
-			
+		if(this.elem instanceof Objet)
+			return;
 		HashMap<Integer, HashMap<Integer,VueElement>> resultat = Strategie.chercherElementProche(ve, voisins);
 		int distPlusProche = resultat.keySet().iterator().next();
 		int refPlusProche =  resultat.get(distPlusProche).keySet().iterator().next();
@@ -197,7 +200,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		System.exit(1);
 	}
 
-	public Personnage getPersonnage() throws RemoteException {
+	public Element getElement() throws RemoteException {
 		return elem;
 	}
 	
