@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
-import org.personnage.Personnage;
+import individu.Personnage;
 
 import serveur.IArene;
 import utilitaires.UtilitaireConsole;

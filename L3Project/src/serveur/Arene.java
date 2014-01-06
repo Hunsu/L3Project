@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import org.personnage.Personnage;
+import individu.Personnage;
 
 import controle.IConsole;
 import utilitaires.UtilitaireConsole;

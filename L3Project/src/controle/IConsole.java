@@ -5,7 +5,7 @@ import interfaceGraphique.VueElement;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import org.personnage.Personnage;
+import individu.Personnage;
 
 /**
  * Represente le lien Element - Serveur

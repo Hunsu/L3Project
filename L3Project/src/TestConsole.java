@@ -1,6 +1,6 @@
 import java.rmi.RemoteException;
 
-import org.personnage.Personnage1;
+import individu.Elf;
 
 import controle.Console;
 
@@ -14,7 +14,7 @@ public class TestConsole {
 	 * @throws RemoteException 
 	 */
 	public static void main(String[] args) throws RemoteException {
-		Personnage1 babar = new Personnage1("Babar","image/Kenny.png");
+		Elf babar = new Elf("Babar","image/Kenny.png",100);
 
 		//Random r = new Random();
 		new Console(babar, 40, 40);
