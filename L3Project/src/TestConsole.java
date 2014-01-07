@@ -25,12 +25,12 @@ public class TestConsole {
 
 		//Random r = new Random();
 		new Console(babar, 40, 40);
-		/*new Console(elf1, 14, 40);
+		new Console(elf1, 14, 40);
 		new Console(elf2, 4, 40);
 		new Console(elf3,50, 40);
 		new Console(elf4, 45, 40);
 		new Console(elf5, 40, 10);
-		new Console(elf6, 40, 49);*/
+		new Console(elf6, 40, 49);
 	}
 
 }
