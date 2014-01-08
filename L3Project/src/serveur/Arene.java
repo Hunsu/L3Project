@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import individu.Personnage;
+import org.objets.Objet;
 
+import individu.Personnage;
 import controle.IConsole;
 import utilitaires.UtilitaireConsole;
 
@@ -72,6 +73,7 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 										// connexion/deconnexion
 					// a cet instant, pour chaque client connecte, on verifie
 					// s'il est en vie
+					
 					for (Enumeration<Remote> enu = elements.keys(); enu
 							.hasMoreElements();) {
 						// boucle de jeu
@@ -189,12 +191,15 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 					((IConsole) r)
 							.shutDown("Vous etes reste trop longtemps dans l'arene, vous etes elimine !");
 				}
+				if(elem instanceof Objet && elements.get(r).getTTL() == 0){
+					elements.remove(r);
+				}
 
 			} catch (Exception e) {
 				// les exceptions sont inhibees ici, que ce soit une
 				// deconnection du client ou autre
 				// en cas d'erreur, le client ne sera plus jamais execute
-				// e.printStackTrace();
+				e.printStackTrace();
 				elements.remove(r);
 			}
 		}
@@ -234,6 +239,19 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	}
 
 	public void ramasser(int ref, int ref2) throws RemoteException {
+		Personnage p =null;
+		Remote toDelete = null;
+		for(Remote r : elements.keySet()){
+			VueElement ve = elements.get(r);
+			if(ve.getRef() == ref){
+				p = (Personnage) ve.getControleur().getElement();
+				p.ramasser(ref2);
+			}
+			if(ve.getRef() == ref2){
+				toDelete =r;
+			}
+		}
+		elements.remove(toDelete);
 	}
 
 	/**

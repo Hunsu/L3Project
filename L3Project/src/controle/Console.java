@@ -90,6 +90,8 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	 * Cette methode est execute chaque seconde  
 	 */
 	public void run() throws RemoteException {
+		if(this.elem instanceof Objet)
+			return;
 		//decremente sa duree de vie
 		ve.decrTTL(); 
 			
@@ -99,18 +101,28 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		//Hashtable<Integer,VueElement> voisinsInconnus = extraireInconnus(voisins);
 		
 		// Recherche du plus proche, sinon errer
-		if(this.elem instanceof Objet)
-			return;
 		HashMap<Integer, HashMap<Integer,VueElement>> resultat = Strategie.chercherElementProche(ve, voisins);
 		int distPlusProche = resultat.keySet().iterator().next();
 		int refPlusProche =  resultat.get(distPlusProche).keySet().iterator().next();
-		//VueElement cible = resultat.get(distPlusProche).get(refPlusProche);
-			
+		//System.out.println(resultat.get(distPlusProche));
+		VueElement cible = resultat.get(distPlusProche).get(refPlusProche);
+		IConsole console = null;
+		if(cible != null)
+			console = cible.getControleur();
+		
 		//si le plus proche est a proximite
 		if (distPlusProche<=1) { 
-			//jeu
-			parler("Je joue avec "+refPlusProche);
-			((IArene) serveur).interaction(refRMI, refPlusProche);
+			if(console != null && console.getElement() instanceof Personnage){
+				//jeu
+				parler("Je joue avec "+refPlusProche);
+				((IArene) serveur).interaction(refRMI, refPlusProche);
+			} else{
+				parler("Je ramasse l'objet "+refPlusProche);
+				ramasserObjet(console);
+				((IArene) serveur).ramasser(refRMI, refPlusProche);
+			}
+			
+				
 	
 		}
 		//sinon
@@ -219,6 +231,9 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	}
 	
 	public void ramasserObjet(IConsole objet) throws RemoteException {
+		objet.getVueElement().setTTL(0);
+		((Personnage) elem).addObject((Objet) objet.getElement());
+		//((IArene) serveur).ramasser(refRMI, );
 	}
 	
 	public String afficher() throws RemoteException{
