@@ -25,6 +25,10 @@ public class IHM extends JFrame {
 		}
 	}
 
+	/**
+	 * @uml.property  name="arene"
+	 * @uml.associationEnd  
+	 */
 	private AreneJPanel arene = null;
 
 	public IHM() {

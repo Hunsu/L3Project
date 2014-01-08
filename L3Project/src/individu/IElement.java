@@ -2,20 +2,26 @@ package individu;
 
 import java.util.ArrayList;
 
+/**
+ * @author   meradi
+ */
 public interface IElement {
 	/**
 	 * Retourne le nom de l'element
+	 * @uml.property  name="nom"
 	 */
-	public String getName();
+	public String getNom();
 	
 	/**
 	 * Retourne le nombre de vies de l'element
+	 * @uml.property  name="vie"
 	 */
 	public int getVie();
 	
 	/**
 	 * Reinitialise le nombre de vies de l'element
-	 * @param vie le nouveau nombre de vie
+	 * @param vie  le nouveau nombre de vie
+	 * @uml.property  name="vie"
 	 */
 	
 	public void setVie(int vie);

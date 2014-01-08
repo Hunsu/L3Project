@@ -1,0 +1,5 @@
+<map id="interaction.Duel" name="interaction.Duel">
+<area shape="rect" id="node3" href="$classinteraction_1_1_face_off.html" title="interaction.FaceOff" alt="" coords="5,83,139,112"/>
+<area shape="rect" id="node5" href="$classinteraction_1_1_lucky_number.html" title="interaction.LuckyNumber" alt="" coords="163,83,328,112"/>
+<area shape="rect" id="node7" href="$classinteraction_1_1_shifumi.html" title="interaction.Shifumi" alt="" coords="352,83,483,112"/>
+</map>

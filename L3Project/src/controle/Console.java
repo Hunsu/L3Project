@@ -1,5 +1,8 @@
 package controle;
 
+import individu.Element;
+import individu.Objet;
+import individu.Personnage;
 import interfaceGraphique.VueElement;
 
 import java.awt.Point;
@@ -11,10 +14,6 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
-import org.objets.Objet;
-
-import individu.Element;
-import individu.Personnage;
 import serveur.IArene;
 import utilitaires.UtilitaireConsole;
 
@@ -28,11 +27,32 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	
 	private static final long serialVersionUID = 1L;
 	private static final int port=5099;	              //port par defaut pour communiquer avec le serveur RMI
+	/**
+	 * @uml.property  name="serveur"
+	 */
 	private Remote serveur = null;                    //le serveur avec lequel le controleur communique
+	/**
+	 * @uml.property  name="ve"
+	 * @uml.associationEnd  
+	 */
 	private VueElement ve = null;                     //la vue de l'element (pour l'interface graphique)
+	/**
+	 * @uml.property  name="elem"
+	 * @uml.associationEnd  
+	 */
 	private Element elem = null;                      //l'element pour lequel le controleur est cree
+	/**
+	 * @uml.property  name="voisins"
+	 * @uml.associationEnd  qualifier="valueOf:java.lang.Integer interfaceGraphique.VueElement"
+	 */
 	private Hashtable<Integer,VueElement> voisins;    //les vues des voisins sur l'interface graphique
+	/**
+	 * @uml.property  name="pointErrance"
+	 */
 	private Point pointErrance;                       //le point ou aller errer
+	/**
+	 * @uml.property  name="refRMI"
+	 */
 	private int refRMI;                               //la reference (entiere) attribuee par le serveur a la connexion
 	
 	
@@ -49,6 +69,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		try{
 			//initialisation de l'element pour lequel le controleur est cree
 			this.elem=elem;
+			
 			
 			//position initiale aleatoire
 			//Random r=new Random();
@@ -101,7 +122,12 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		//Hashtable<Integer,VueElement> voisinsInconnus = extraireInconnus(voisins);
 		
 		// Recherche du plus proche, sinon errer
-		HashMap<Integer, HashMap<Integer,VueElement>> resultat = Strategie.chercherElementProche(ve, voisins);
+		Hashtable<Integer,VueElement> refsInconnus = new Hashtable<Integer,VueElement>();
+		for(Integer ref : voisins.keySet()){
+			if(!elem.getElementsConnus().contains(ref))
+				refsInconnus.put(ref, voisins.get(ref));
+		}
+		HashMap<Integer, HashMap<Integer,VueElement>> resultat = Strategie.chercherElementProche(ve, refsInconnus);
 		int distPlusProche = resultat.keySet().iterator().next();
 		int refPlusProche =  resultat.get(distPlusProche).keySet().iterator().next();
 		//System.out.println(resultat.get(distPlusProche));
@@ -115,6 +141,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 			if(console != null && console.getElement() instanceof Personnage){
 				//jeu
 				parler("Je joue avec "+refPlusProche);
+				ajouterConnu(refPlusProche);
 				((IArene) serveur).interaction(refRMI, refPlusProche);
 			} else{
 				parler("Je ramasse l'objet "+refPlusProche);
@@ -232,7 +259,7 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	
 	public void ramasserObjet(IConsole objet) throws RemoteException {
 		objet.getVueElement().setTTL(0);
-		((Personnage) elem).addObject((Objet) objet.getElement());
+		((Personnage) elem).addObjet((Objet) objet.getElement());
 		//((IArene) serveur).ramasser(refRMI, );
 	}
 	

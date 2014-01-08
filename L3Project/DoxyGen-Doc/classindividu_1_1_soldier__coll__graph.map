@@ -1,0 +1,6 @@
+<map id="individu.Soldier" name="individu.Soldier">
+<area shape="rect" id="node2" href="$classindividu_1_1_personnage.html" title="individu.Personnage" alt="" coords="215,181,353,211"/>
+<area shape="rect" id="node4" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="72,85,189,115"/>
+<area shape="rect" id="node6" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,5,128,35"/>
+<area shape="rect" id="node10" href="$interfaceindividu_1_1_i_combattant.html" title="individu.ICombattant" alt="" coords="213,85,355,115"/>
+</map>

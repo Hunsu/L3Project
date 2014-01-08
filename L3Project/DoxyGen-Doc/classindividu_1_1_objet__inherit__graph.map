@@ -1,0 +1,12 @@
+<map id="individu.Objet" name="individu.Objet">
+<area shape="rect" id="node10" href="$classindividu_1_1_gear.html" title="individu.Gear" alt="" coords="496,139,595,168"/>
+<area shape="rect" id="node22" href="$classindividu_1_1_items.html" title="individu.Items" alt="" coords="495,219,596,248"/>
+<area shape="rect" id="node2" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="177,165,295,195"/>
+<area shape="rect" id="node4" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,164,128,193"/>
+<area shape="rect" id="node12" href="$classindividu_1_1_bow.html" title="individu.Bow" alt="" coords="657,5,753,35"/>
+<area shape="rect" id="node14" href="$classindividu_1_1_dagger.html" title="individu.Dagger" alt="" coords="649,59,761,88"/>
+<area shape="rect" id="node16" href="$classindividu_1_1_hammer.html" title="individu.Hammer" alt="" coords="645,112,765,141"/>
+<area shape="rect" id="node18" href="$classindividu_1_1_shield.html" title="individu.Shield" alt="" coords="652,165,759,195"/>
+<area shape="rect" id="node20" href="$classindividu_1_1_sword.html" title="individu.Sword" alt="" coords="652,219,759,248"/>
+<area shape="rect" id="node24" href="$classindividu_1_1_crystal.html" title="individu.Crystal" alt="" coords="649,272,761,301"/>
+</map>

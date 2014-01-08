@@ -15,9 +15,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import org.objets.Objet;
-
-import individu.Personnage;
 import controle.IConsole;
 import utilitaires.UtilitaireConsole;
 
@@ -28,8 +25,18 @@ import utilitaires.UtilitaireConsole;
 public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="port"
+	 */
 	private int port; // port a utiliser pour la connexion
+	/**
+	 * @uml.property  name="compteur"
+	 */
 	private int compteur = 0; // nombre d'elements connectes au serveur
+	/**
+	 * @uml.property  name="elements"
+	 * @uml.associationEnd  qualifier="r:java.rmi.Remote interfaceGraphique.VueElement"
+	 */
 	private Hashtable<Remote, VueElement> elements = null; // elements connectes
 															// au serveur
 
@@ -73,7 +80,6 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 										// connexion/deconnexion
 					// a cet instant, pour chaque client connecte, on verifie
 					// s'il est en vie
-					
 					for (Enumeration<Remote> enu = elements.keys(); enu
 							.hasMoreElements();) {
 						// boucle de jeu
@@ -91,8 +97,8 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 						} else {
 							Element elem = ((IConsole) r).getElement();
 
-							if (elem instanceof Personnage && elem.getVie() <= 0) {
-								System.out.println(elem.getName()
+							if (elem.getVie() <= 0) {
+								System.out.println(elem.getNom()
 										+ " est mort...");
 								elements.remove(r);
 								((IConsole) r).shutDown("Vous etes mort...");
@@ -185,14 +191,10 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 															// les infos du
 															// client, pourquoi
 															// clonage ??
-				Element elem = elements.get(r).getControleur().getElement();
-				if ( elem instanceof Personnage && elements.get(r).getTTL() == 0) {
+				if (elements.get(r).getTTL() == 0) {
 					elements.remove(r);
 					((IConsole) r)
 							.shutDown("Vous etes reste trop longtemps dans l'arene, vous etes elimine !");
-				}
-				if(elem instanceof Objet && elements.get(r).getTTL() == 0){
-					elements.remove(r);
 				}
 
 			} catch (Exception e) {
@@ -238,20 +240,27 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 		}
 	}
 
-	public void ramasser(int ref, int ref2) throws RemoteException {
-		Personnage p =null;
-		Remote toDelete = null;
-		for(Remote r : elements.keySet()){
-			VueElement ve = elements.get(r);
-			if(ve.getRef() == ref){
-				p = (Personnage) ve.getControleur().getElement();
-				p.ramasser(ref2);
-			}
-			if(ve.getRef() == ref2){
-				toDelete =r;
-			}
+	public void ramasser(int ref1, int ref2) throws RemoteException {
+		//recupere l'attaquant et le defenseur
+	     Remote combattant;
+		try {
+			combattant = Naming.lookup("rmi://localhost:" + port +"/Console"+ref1);
+			Remote objet = Naming.lookup("rmi://localhost:" + port + "/Console"+ref2);
+			//tester l'objet avant de le ramasser...
+	    	 ((IConsole) combattant).ramasserObjet((IConsole)objet);
+			
+		    	 //mets a jour l'etat de l'objet comme ramasse
+	    	 ((IConsole) objet).perdreVie(1);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		elements.remove(toDelete);
+	     
+		
+	     
 	}
 
 	/**

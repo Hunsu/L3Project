@@ -1,0 +1,19 @@
+<map id="individu.IElement" name="individu.IElement">
+<area shape="rect" id="node3" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="177,325,295,355"/>
+<area shape="rect" id="node5" href="$classindividu_1_1_objet.html" title="individu.Objet" alt="" coords="363,245,464,275"/>
+<area shape="rect" id="node23" href="$classindividu_1_1_personnage.html" title="individu.Personnage" alt="" coords="344,405,483,435"/>
+<area shape="rect" id="node7" href="$classindividu_1_1_gear.html" title="individu.Gear" alt="" coords="547,139,645,168"/>
+<area shape="rect" id="node19" href="$classindividu_1_1_items.html" title="individu.Items" alt="" coords="545,245,647,275"/>
+<area shape="rect" id="node9" href="$classindividu_1_1_bow.html" title="individu.Bow" alt="" coords="721,5,817,35"/>
+<area shape="rect" id="node11" href="$classindividu_1_1_dagger.html" title="individu.Dagger" alt="" coords="713,59,825,88"/>
+<area shape="rect" id="node13" href="$classindividu_1_1_hammer.html" title="individu.Hammer" alt="" coords="709,112,829,141"/>
+<area shape="rect" id="node15" href="$classindividu_1_1_shield.html" title="individu.Shield" alt="" coords="716,165,823,195"/>
+<area shape="rect" id="node17" href="$classindividu_1_1_sword.html" title="individu.Sword" alt="" coords="716,219,823,248"/>
+<area shape="rect" id="node21" href="$classindividu_1_1_crystal.html" title="individu.Crystal" alt="" coords="713,272,825,301"/>
+<area shape="rect" id="node25" href="$classindividu_1_1_assassin.html" title="individu.Assassin" alt="" coords="535,299,657,328"/>
+<area shape="rect" id="node27" href="$classindividu_1_1_dwarf.html" title="individu.Dwarf" alt="" coords="544,352,648,381"/>
+<area shape="rect" id="node29" href="$classindividu_1_1_elf.html" title="individu.Elf" alt="" coords="553,405,639,435"/>
+<area shape="rect" id="node31" href="$classindividu_1_1_mage.html" title="individu.Mage" alt="" coords="545,459,647,488"/>
+<area shape="rect" id="node33" href="$classindividu_1_1_mercenary.html" title="individu.Mercenary" alt="" coords="531,512,661,541"/>
+<area shape="rect" id="node35" href="$classindividu_1_1_soldier.html" title="individu.Soldier" alt="" coords="541,565,651,595"/>
+</map>

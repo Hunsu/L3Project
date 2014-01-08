@@ -9,8 +9,18 @@ import serveur.Arene;
 
 public class DuelBasic implements IDuel {
 
+	/**
+	 * @uml.property  name="arene"
+	 * @uml.associationEnd  
+	 */
 	private Arene arene;          //l'arene sur laquelle le jeu a lieu
+	/**
+	 * @uml.property  name="refAttaquant"
+	 */
 	private Remote refAttaquant;  //la reference de l'attaquant
+	/**
+	 * @uml.property  name="refDefenseur"
+	 */
 	private Remote refDefenseur;  //la reference du defenseur
 	
 	/**
@@ -47,10 +57,20 @@ public class DuelBasic implements IDuel {
 	}
 
 
+	/**
+	 * @return
+	 * @throws RemoteException
+	 * @uml.property  name="refAttaquant"
+	 */
 	public Remote getRefAttaquant() throws RemoteException {
 		return refAttaquant;
 	}
 
+	/**
+	 * @return
+	 * @throws RemoteException
+	 * @uml.property  name="refDefenseur"
+	 */
 	public Remote getRefDefenseur() throws RemoteException {
 		return refDefenseur;
 	}

@@ -1,0 +1,11 @@
+<map id="individu.Personnage" name="individu.Personnage">
+<area shape="rect" id="node11" href="$classindividu_1_1_assassin.html" title="individu.Assassin" alt="" coords="559,5,681,35"/>
+<area shape="rect" id="node13" href="$classindividu_1_1_dwarf.html" title="individu.Dwarf" alt="" coords="568,59,672,88"/>
+<area shape="rect" id="node15" href="$classindividu_1_1_elf.html" title="individu.Elf" alt="" coords="577,112,663,141"/>
+<area shape="rect" id="node17" href="$classindividu_1_1_mage.html" title="individu.Mage" alt="" coords="569,165,671,195"/>
+<area shape="rect" id="node19" href="$classindividu_1_1_mercenary.html" title="individu.Mercenary" alt="" coords="555,219,685,248"/>
+<area shape="rect" id="node21" href="$classindividu_1_1_soldier.html" title="individu.Soldier" alt="" coords="565,272,675,301"/>
+<area shape="rect" id="node2" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="189,112,307,141"/>
+<area shape="rect" id="node4" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,85,128,115"/>
+<area shape="rect" id="node8" href="$interfaceindividu_1_1_i_combattant.html" title="individu.ICombattant" alt="" coords="177,165,319,195"/>
+</map>

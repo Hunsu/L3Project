@@ -1,0 +1,6 @@
+<map id="individu.Items" name="individu.Items">
+<area shape="rect" id="node12" href="$classindividu_1_1_crystal.html" title="individu.Crystal" alt="" coords="92,315,204,344"/>
+<area shape="rect" id="node2" href="$classindividu_1_1_objet.html" title="individu.Objet" alt="" coords="97,160,199,189"/>
+<area shape="rect" id="node4" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="41,83,159,112"/>
+<area shape="rect" id="node6" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,5,128,35"/>
+</map>

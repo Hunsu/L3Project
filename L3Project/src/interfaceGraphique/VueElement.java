@@ -9,10 +9,26 @@ import controle.IConsole;
 
 public final class VueElement implements Serializable {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="ref"
+	 */
 	private int ref;                                   //reference de l'element sur le serveur
+	/**
+	 * @uml.property  name="point"
+	 */
 	private Point point;                               //position de l'element
+	/**
+	 * @uml.property  name="ctr"
+	 * @uml.associationEnd  
+	 */
 	private IConsole ctr;                              //controleur de l'element
+	/**
+	 * @uml.property  name="phrase"
+	 */
 	private String phrase;                             //message communique par l'element
+	/**
+	 * @uml.property  name="tTL"
+	 */
 	private int TTL=60*10;							   //duree de vie, max 10 minutes 
 
 	/**
@@ -46,6 +62,7 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Renvoie la reference de l'element sur le serveur
+	 * @uml.property  name="ref"
 	 */
 	public int getRef() {
 		return ref;
@@ -53,6 +70,7 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Renvoie la duree de vie de l'element
+	 * @uml.property  name="tTL"
 	 */
 	public int getTTL() {
 		return TTL;
@@ -60,7 +78,8 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Mets a jour la duree de vie de l'element
-	 * @param tTL le nouveau temps de vie
+	 * @param tTL  le nouveau temps de vie
+	 * @uml.property  name="tTL"
 	 */
 	public void setTTL(int tTL) {
 		TTL = tTL;
@@ -68,6 +87,7 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Renvoie le point sur lequel l'element se trouve
+	 * @uml.property  name="point"
 	 */
 	public Point getPoint() {
 		return point;
@@ -75,6 +95,7 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Mets a jour la position sur laquelle l'element se trouve
+	 * @uml.property  name="point"
 	 */
 	public void setPoint(Point point) {
 		this.point = point;
@@ -89,6 +110,7 @@ public final class VueElement implements Serializable {
 
 	/**
 	 * Renvoie le message communique par l'element
+	 * @uml.property  name="phrase"
 	 */
 	public String getPhrase(){
 		return this.phrase;
@@ -96,7 +118,8 @@ public final class VueElement implements Serializable {
 	
 	/**
 	 * Reinitialise le message a communiquer par l'element
-	 * @param phrase le nouveau message 
+	 * @param phrase  le nouveau message
+	 * @uml.property  name="phrase"
 	 */
 	public void setPhrase(String phrase){
 		this.phrase = phrase;

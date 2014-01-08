@@ -1,0 +1,22 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node3" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="221,351,339,380"/>
+<area shape="rect" id="node5" href="$classindividu_1_1_objet.html" title="individu.Objet" alt="" coords="451,245,552,275"/>
+<area shape="rect" id="node38" href="$classinterface_graphique_1_1_vue_element.html" title="interfaceGraphique.VueElement" alt="" coords="177,297,383,327"/>
+<area shape="rect" id="node23" href="$classindividu_1_1_personnage.html" title="individu.Personnage" alt="" coords="432,405,571,435"/>
+<area shape="rect" id="node7" href="$classindividu_1_1_gear.html" title="individu.Gear" alt="" coords="635,139,733,168"/>
+<area shape="rect" id="node19" href="$classindividu_1_1_items.html" title="individu.Items" alt="" coords="633,245,735,275"/>
+<area shape="rect" id="node9" href="$classindividu_1_1_bow.html" title="individu.Bow" alt="" coords="809,59,905,88"/>
+<area shape="rect" id="node11" href="$classindividu_1_1_dagger.html" title="individu.Dagger" alt="" coords="801,112,913,141"/>
+<area shape="rect" id="node13" href="$classindividu_1_1_hammer.html" title="individu.Hammer" alt="" coords="797,165,917,195"/>
+<area shape="rect" id="node15" href="$classindividu_1_1_shield.html" title="individu.Shield" alt="" coords="804,219,911,248"/>
+<area shape="rect" id="node17" href="$classindividu_1_1_sword.html" title="individu.Sword" alt="" coords="804,5,911,35"/>
+<area shape="rect" id="node21" href="$classindividu_1_1_crystal.html" title="individu.Crystal" alt="" coords="801,272,913,301"/>
+<area shape="rect" id="node25" href="$classindividu_1_1_assassin.html" title="individu.Assassin" alt="" coords="623,405,745,435"/>
+<area shape="rect" id="node27" href="$classindividu_1_1_dwarf.html" title="individu.Dwarf" alt="" coords="632,459,736,488"/>
+<area shape="rect" id="node29" href="$classindividu_1_1_elf.html" title="individu.Elf" alt="" coords="641,512,727,541"/>
+<area shape="rect" id="node31" href="$classindividu_1_1_mage.html" title="individu.Mage" alt="" coords="633,565,735,595"/>
+<area shape="rect" id="node33" href="$classindividu_1_1_mercenary.html" title="individu.Mercenary" alt="" coords="619,299,749,328"/>
+<area shape="rect" id="node35" href="$classindividu_1_1_soldier.html" title="individu.Soldier" alt="" coords="629,352,739,381"/>
+<area shape="rect" id="node39" href="$interfaceindividu_1_1_i_combattant.html" title="individu.ICombattant" alt="" coords="209,405,351,435"/>
+<area shape="rect" id="node41" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,351,128,380"/>
+</map>

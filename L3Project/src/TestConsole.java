@@ -1,8 +1,10 @@
 import java.rmi.RemoteException;
 
-import org.objets.Objet;
-
+import individu.Crystal;
+import individu.Dagger;
 import individu.Elf;
+import individu.Assassin;
+import individu.Sword;
 import controle.Console;
 
 /**
@@ -15,22 +17,13 @@ public class TestConsole {
 	 * @throws RemoteException 
 	 */
 	public static void main(String[] args) throws RemoteException {
-		Objet babar = new Objet("Babar","image/Kenny.png",100, 0);
-		Elf elf1 = new Elf("Babar","image/Kenny.png",100);
-		/*Elf elf2 = new Elf("Babar","image/Kenny.png",100);
-		Elf elf3 = new Elf("Babar","image/Kenny.png",100);
-		Elf elf4 = new Elf("Babar","image/Kenny.png",100);
-		Elf elf5 = new Elf("Babar","image/Kenny.png",100);
-		Elf elf6 = new Elf("Babar","image/Kenny.png",100);*/
-
+		Crystal babar = new Crystal("dagger", 'S');
+		Assassin tueur = new Assassin("lars");
+		
 		//Random r = new Random();
-		//new Console(babar, 20, 35);
-		new Console(elf1, 17, 40);
-		//new Console(elf2, 4, 40);
-		//new Console(elf3,50, 40);
-		//new Console(elf4, 45, 40);
-		//new Console(elf5, 40, 10);
-		//new Console(elf6, 40, 49);
+		new Console(babar, 80, 71);
+		//new Console(tueur,60,60);
+		
 	}
 
 }

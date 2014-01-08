@@ -6,7 +6,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import individu.Element;
-import individu.Personnage;
 
 /**
  * Represente le lien Element - Serveur
@@ -41,12 +40,16 @@ public interface IConsole extends Remote {
 	/**
 	 * Renvoie l'element associe a la console
 	 * @throws RemoteException
+	 * @uml.property  name="element"
+	 * @uml.associationEnd  
 	 */
 	public Element getElement() throws RemoteException;
 	
 	/**
 	 * Renvoie la vue de l'element associe a la console 
 	 * @throws RemoteException
+	 * @uml.property  name="vueElement"
+	 * @uml.associationEnd  inverse="ctr:interfaceGraphique.VueElement"
 	 */
 	public VueElement getVueElement() throws RemoteException;
 	

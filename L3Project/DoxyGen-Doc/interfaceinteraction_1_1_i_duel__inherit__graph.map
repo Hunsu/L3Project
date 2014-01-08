@@ -1,0 +1,4 @@
+<map id="interaction.IDuel" name="interaction.IDuel">
+<area shape="rect" id="node3" href="$classinteraction_1_1_duel_basic.html" title="interaction.DuelBasic" alt="" coords="5,83,152,112"/>
+<area shape="rect" id="node5" href="$classinteraction_1_1_face_off.html" title="interaction.FaceOff" alt="" coords="176,83,309,112"/>
+</map>

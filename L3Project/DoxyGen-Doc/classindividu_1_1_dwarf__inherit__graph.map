@@ -1,0 +1,6 @@
+<map id="individu.Dwarf" name="individu.Dwarf">
+<area shape="rect" id="node2" href="$classindividu_1_1_personnage.html" title="individu.Personnage" alt="" coords="137,160,276,189"/>
+<area shape="rect" id="node4" href="$classindividu_1_1_element.html" title="individu.Element" alt="" coords="72,83,189,112"/>
+<area shape="rect" id="node6" href="$interfaceindividu_1_1_i_element.html" title="individu.IElement" alt="" coords="5,5,128,35"/>
+<area shape="rect" id="node10" href="$interfaceindividu_1_1_i_combattant.html" title="individu.ICombattant" alt="" coords="213,83,355,112"/>
+</map>
