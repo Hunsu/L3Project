@@ -1,4 +1,4 @@
-package individu;
+package individu.objets;
 
 public class Hammer extends Gear{
 	

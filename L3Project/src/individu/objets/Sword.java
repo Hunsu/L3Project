@@ -1,4 +1,4 @@
-package individu;
+package individu.objets;
 
 public class Sword extends Gear {
 	

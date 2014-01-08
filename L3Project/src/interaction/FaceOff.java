@@ -1,12 +1,13 @@
 package interaction;
 
+import individu.personnages.Personnage;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import individu.Personnage;
 import java.util.Random;
 
-import controle.IConsole;
 import serveur.Arene;
+import controle.IConsole;
 
 public class FaceOff extends Duel implements IDuel{
 	

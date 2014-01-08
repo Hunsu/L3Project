@@ -1,4 +1,6 @@
-package individu;
+package individu.personnages;
+
+import individu.objets.Hammer;
 
 
 public class Dwarf extends Personnage {

@@ -1,8 +1,8 @@
 package controle;
 
 import individu.Element;
-import individu.Objet;
-import individu.Personnage;
+import individu.objets.Objet;
+import individu.personnages.Personnage;
 import interfaceGraphique.VueElement;
 
 import java.awt.Point;

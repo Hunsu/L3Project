@@ -1,4 +1,4 @@
-package individu;
+package individu.personnages;
 
 
 public class Mage extends Personnage {

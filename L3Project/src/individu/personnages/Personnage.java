@@ -1,4 +1,8 @@
-package individu;
+package individu.personnages;
+
+import individu.Element;
+import individu.ICombattant;
+import individu.objets.Objet;
 
 import java.util.ArrayList;
 

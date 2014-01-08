@@ -1,4 +1,6 @@
-package individu;
+package individu.personnages;
+
+import individu.objets.Bow;
 
 
 public class Elf extends Personnage {

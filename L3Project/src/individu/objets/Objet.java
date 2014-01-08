@@ -1,4 +1,6 @@
-package individu;
+package individu.objets;
+
+import individu.Element;
 
 import java.io.Serializable;
 

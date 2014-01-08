@@ -1,10 +1,8 @@
+import individu.objets.Crystal;
+import individu.personnages.Assassin;
+
 import java.rmi.RemoteException;
 
-import individu.Crystal;
-import individu.Dagger;
-import individu.Elf;
-import individu.Assassin;
-import individu.Sword;
 import controle.Console;
 
 /**

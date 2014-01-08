@@ -1,4 +1,6 @@
-package individu;
+package individu.personnages;
+
+import individu.objets.Sword;
 
 
 public class Mercenary extends Personnage {
