@@ -8,33 +8,30 @@ import java.util.ArrayList;
 
 
 /**
+ * The Class Element.
+ *
  * @author  meradi
  */
 public class Element implements IElement, Serializable {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="nom"
-	 */
+	
+	/** The nom. @uml.property  name="nom" */
 	private String nom;                                                      //le nom de l'element
-	/**
-	 * @uml.property  name="vie"
-	 */
+	
+	/** The vie. @uml.property  name="vie" */
 	private int vie;                                                         //le nombre de vies de l'element
-	/**
-	 * @uml.property  name="elementsConnus"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer"
-	 */
+	
+	/** The elements connus. @uml.property  name="elementsConnus" @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer" */
 	private ArrayList<Integer> elementsConnus = new ArrayList<Integer>();    //les references des elements avec lesquels on a joue
-	/**
-	 * @uml.property  name="image"
-	 */
+	
+	/** The image. @uml.property  name="image" */
 	protected String image;
 	
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param nom le nom de l'element a creer
 	 * le nombre de vie est par defaut initialise a 1
 	 */
@@ -44,7 +41,8 @@ public class Element implements IElement, Serializable {
 	}
 	
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param nom le nom le l'element a creer
 	 * @param vie le nombre de vies initiales
 	 */
@@ -54,7 +52,9 @@ public class Element implements IElement, Serializable {
 	}
 
 	/**
-	 * @return
+	 * Gets the nom.
+	 *
+	 * @return the nom
 	 * @uml.property  name="nom"
 	 */
 	public String getNom() {
@@ -62,7 +62,9 @@ public class Element implements IElement, Serializable {
 	}
 
 	/**
-	 * @return
+	 * Gets the vie.
+	 *
+	 * @return the vie
 	 * @uml.property  name="vie"
 	 */
 	public int getVie() {
@@ -70,7 +72,9 @@ public class Element implements IElement, Serializable {
 	}
 
 	/**
-	 * @param vie
+	 * Sets the vie.
+	 *
+	 * @param vie the new vie
 	 * @uml.property  name="vie"
 	 */
 	public void setVie(int vie){
@@ -78,25 +82,35 @@ public class Element implements IElement, Serializable {
 	}
 	
 	/**
-	 * @return
+	 * Gets the elements connus.
+	 *
+	 * @return the elements connus
 	 * @uml.property  name="elementsConnus"
 	 */
 	public ArrayList<Integer> getElementsConnus() {
 		return this.elementsConnus;
 	}
 
+	/* (non-Javadoc)
+	 * @see individu.IElement#ajouterConnu(int)
+	 */
 	public void ajouterConnu(int ref) {
 		elementsConnus.add(ref);		
 	}
 	
 	/**
-	 * @return
+	 * Gets the image.
+	 *
+	 * @return the image
 	 * @uml.property  name="image"
 	 */
 	public String getImage(){
 		return this.image;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		return this.getNom()+"["+this.getVie()+"]";
 	}

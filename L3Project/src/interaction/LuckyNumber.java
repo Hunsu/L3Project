@@ -7,13 +7,30 @@ import java.util.Random;
 import controle.IConsole;
 import serveur.Arene;
 
+/**
+ * The Class LuckyNumber.
+ */
 public class LuckyNumber extends Duel{
 	
+	/**
+	 * Instantiates a new lucky number.
+	 *
+	 * @param arene the arene
+	 * @param refAttaquant the ref attaquant
+	 * @param refDefenseur the ref defenseur
+	 * @throws RemoteException the remote exception
+	 */
 	public LuckyNumber(Arene arene, Remote refAttaquant, Remote refDefenseur) throws RemoteException{
 		
 		super(arene,refAttaquant,refDefenseur);
 	}
 
+	/**
+	 * Realiser combat.
+	 *
+	 * @return the int
+	 * @throws RemoteException the remote exception
+	 */
 	public int realiserCombat() throws RemoteException {
 		
 		Remote ratt = this.getRefAttaquant();

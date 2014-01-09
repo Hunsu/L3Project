@@ -12,25 +12,37 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * The Class IHM.
+ */
 public class IHM extends JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * The Class AreneJTextArea.
+	 */
 	private class AreneJTextArea extends JTextArea {
 
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
+		/**
+		 * Créer une Fenêtre pour afficher les messages des consoles.
+		 */
 		AreneJTextArea() {
 			super("Connexion...", 10, 10);
 			setEditable(false);
 		}
 	}
 
-	/**
-	 * @uml.property  name="arene"
-	 * @uml.associationEnd  
-	 */
+	/** The arene. @uml.property  name="arene" @uml.associationEnd */
 	private AreneJPanel arene = null;
 
+	/**
+	 * Créer une interface graphique pour l'arene
+	 */
 	public IHM() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -38,7 +50,6 @@ public class IHM extends JFrame {
 		Dimension size = kit.getScreenSize();
 		setSize(size.width / 2, size.height / 2);
 		setLocation(size.width, size.height / 4);
-		// setResizable(false);
 
 		// cree un titre de la fenetre
 		setTitle("IHM - Arene / UPS - Projet Prog");
@@ -73,7 +84,6 @@ public class IHM extends JFrame {
 		m.add(file);
 		setJMenuBar(m);
 
-		// ajout de l'arene dans la fenetre
 		
 		
 		AreneJTextArea ajta = new AreneJTextArea();
@@ -90,6 +100,9 @@ public class IHM extends JFrame {
 		jf.setVisible(true);
 	}
 
+	/**
+	 * Se connecter au serveur.
+	 */
 	public void connect() {
 		if(arene != null)
 			arene.connect();

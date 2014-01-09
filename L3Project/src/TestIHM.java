@@ -1,12 +1,14 @@
 import interfaceGraphique.IHM;
 
 /**
- * Test de l'interface graphique qui se connecte a l'Arene (apres lancement Arene, avant les Consoles)
+ * Test de l'interface graphique qui se connecte a l'Arene (apres lancement Arene, avant les Consoles).
  */
 public class TestIHM {
 
 	/**
-	 * @param args
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		IHM ihm=new IHM();

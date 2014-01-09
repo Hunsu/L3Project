@@ -3,12 +3,17 @@ package interfaceGraphique;
 import java.awt.Point;
 import java.util.Comparator;
 
+/**
+ * The Class PointComp.
+ */
 public class PointComp extends Point implements Comparator<Point> {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param x la valeur de l'ordonnee
 	 * @param y la valeur de l'abscisse
 	 */
@@ -17,7 +22,8 @@ public class PointComp extends Point implements Comparator<Point> {
 	}
 
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param objectif le point
 	 */
 	public PointComp(Point objectif) {
@@ -25,7 +31,8 @@ public class PointComp extends Point implements Comparator<Point> {
 	}
 
 	/**
-	 * Calcule la distance classique entre le point courant et le point cible
+	 * Calcule la distance classique entre le point courant et le point cible.
+	 *
 	 * @param paux le point cible
 	 * @return un entier representant la distance
 	 */
@@ -34,7 +41,8 @@ public class PointComp extends Point implements Comparator<Point> {
 	}
 	
 	/**
-	 * Compare la distance de l'objet courant a deux autres points
+	 * Compare la distance de l'objet courant a deux autres points.
+	 *
 	 * @param o1 le premier point
 	 * @param o2 le deuxieme point
 	 * @return <0 si le premier point est plus proche, 0 si les points sont a la meme distance et 1 si le deuxieme est plus proche

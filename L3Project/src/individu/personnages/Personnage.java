@@ -6,36 +6,42 @@ import individu.objets.Objet;
 
 import java.util.ArrayList;
 
+/**
+ * The Class Personnage.
+ */
 public class Personnage extends Element implements ICombattant{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="vitesse"
-	 */
+	
+	/** The vitesse. @uml.property  name="vitesse" */
 	private int vitesse;
-	/**
-	 * @uml.property  name="attaque"
-	 */
+	
+	/** The attaque. @uml.property  name="attaque" */
 	private int attaque;
-	/**
-	 * @uml.property  name="defense"
-	 */
+	
+	/** The defense. @uml.property  name="defense" */
 	private int defense;
-	/**
-	 * @uml.property  name="argent"
-	 */
+	
+	/** The argent. @uml.property  name="argent" */
 	private int argent;
-	/**
-	 * @uml.property  name="equipements"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="individu.Objet"
-	 */
+	
+	/** The equipements. @uml.property  name="equipements" @uml.associationEnd  multiplicity="(0 -1)" elementType="individu.Objet" */
 	ArrayList<Objet> equipements;
-	/**
-	 * @uml.property  name="referencesEquipements"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer"
-	 */
+	
+	/** The references equipements. @uml.property  name="referencesEquipements" @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer" */
 	private ArrayList<Integer> referencesEquipements; 	
 	
+	/**
+	 * Instantiates a new personnage.
+	 *
+	 * @param nom the nom
+	 * @param image the image
+	 * @param vie the vie
+	 * @param attaque the attaque
+	 * @param defence the defence
+	 * @param vitesse the vitesse
+	 */
 	public Personnage(String nom,String image, int vie,int attaque,int defence,int vitesse){
 		super(nom,vie);
 		this.attaque=attaque;
@@ -47,28 +53,49 @@ public class Personnage extends Element implements ICombattant{
         equipements = new ArrayList<Objet>();
 	}
 	
+	/* (non-Javadoc)
+	 * @see individu.ICombattant#gagner(int)
+	 */
 	public void gagner(int a){
 		this.argent+=a;
 	}
 	
+	/* (non-Javadoc)
+	 * @see individu.ICombattant#perdre(int)
+	 */
 	public void perdre(int a){
 		this.argent-=a;
 	}
 	
+	/* (non-Javadoc)
+	 * @see individu.ICombattant#ramasser(int)
+	 */
 	public void ramasser(int ref){
 		this.referencesEquipements.add(ref);
 	}
 	
+	/**
+	 * Adds the objet.
+	 *
+	 * @param objet the objet
+	 */
 	public void addObjet(Objet objet){
 		this.equipements.add(objet);
 	}
 	
+	/**
+	 * Adds the ref.
+	 *
+	 * @param ref the ref
+	 */
 	public void addRef(int ref){
 		this.referencesEquipements.add(ref);
 	}
 	
 	/**
-	 * @return
+	 * Gets the attaque.
+	 *
+	 * @return the attaque
 	 * @uml.property  name="attaque"
 	 */
 	public int getAttaque(){
@@ -76,7 +103,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @return
+	 * Gets the defense.
+	 *
+	 * @return the defense
 	 * @uml.property  name="defense"
 	 */
 	public int getDefense(){
@@ -84,7 +113,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @return
+	 * Gets the argent.
+	 *
+	 * @return the argent
 	 * @uml.property  name="argent"
 	 */
 	public int getArgent(){
@@ -92,7 +123,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @return
+	 * Gets the vitesse.
+	 *
+	 * @return the vitesse
 	 * @uml.property  name="vitesse"
 	 */
 	public int getVitesse() {
@@ -100,7 +133,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @param attaque
+	 * Sets the attaque.
+	 *
+	 * @param attaque the new attaque
 	 * @uml.property  name="attaque"
 	 */
 	public void setAttaque(int attaque){
@@ -108,7 +143,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 
 	/**
-	 * @param defense
+	 * Sets the defense.
+	 *
+	 * @param defense the new defense
 	 * @uml.property  name="defense"
 	 */
 	public void setDefense(int defense){
@@ -116,7 +153,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @param argent
+	 * Sets the argent.
+	 *
+	 * @param argent the new argent
 	 * @uml.property  name="argent"
 	 */
 	public void setArgent(int argent){
@@ -124,7 +163,9 @@ public class Personnage extends Element implements ICombattant{
 	}
 	
 	/**
-	 * @param vitesse
+	 * Sets the vitesse.
+	 *
+	 * @param vitesse the new vitesse
 	 * @uml.property  name="vitesse"
 	 */
 	public void setVitesse(int vitesse){

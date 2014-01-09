@@ -4,32 +4,37 @@ import individu.Element;
 
 import java.io.Serializable;
 
+/**
+ * The Class Objet.
+ */
 public class Objet extends Element implements Serializable {
 	
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="boostA"
-	 */
+	
+	/** The boost a. @uml.property  name="boostA" */
 	protected int boostA;
-	/**
-	 * @uml.property  name="boostD"
-	 */
+	
+	/** The boost d. @uml.property  name="boostD" */
 	protected int boostD;
-	/**
-	 * @uml.property  name="boostV"
-	 */
+	
+	/** The boost v. @uml.property  name="boostV" */
 	protected int boostV;
 	
+	/**
+	 * Instantiates a new objet.
+	 *
+	 * @param name the name
+	 */
 	public Objet(String name){
 		super(name);
 		setVie(1);
 	}
 	
 	/**
-	 * @return
+	 * Gets the boost a.
+	 *
+	 * @return the boost a
 	 * @uml.property  name="boostA"
 	 */
 	public int getBoostA() {
@@ -37,7 +42,9 @@ public class Objet extends Element implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * Gets the boost d.
+	 *
+	 * @return the boost d
 	 * @uml.property  name="boostD"
 	 */
 	public int getBoostD() {
@@ -45,7 +52,9 @@ public class Objet extends Element implements Serializable {
 	}
 	
 	/**
-	 * @return
+	 * Gets the boost v.
+	 *
+	 * @return the boost v
 	 * @uml.property  name="boostV"
 	 */
 	public int getBoostV(){

@@ -8,10 +8,14 @@ import java.util.Hashtable;
 
 import utilitaires.UtilitaireConsole;
 
+/**
+ * The Class Strategie.
+ */
 public class Strategie {
 
 	/**
-	 * Cherche l'element le plus proche vers lequel se diriger
+	 * Cherche l'element le plus proche vers lequel se diriger.
+	 *
 	 * @param ve l'element courant
 	 * @param voisins les elements voisins
 	 * @return un hashmap contenant la distance a parcourir vers l'element le plus proche, son identifiant et sa vue

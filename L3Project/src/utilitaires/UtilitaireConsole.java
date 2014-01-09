@@ -10,10 +10,14 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 
+/**
+ * The Class UtilitaireConsole.
+ */
 public class UtilitaireConsole {
 
 	/**
-	 * Renvoie la distance Chebyshev entre deux points
+	 * Renvoie la distance Chebyshev entre deux points.
+	 *
 	 * @param p1 le premier point
 	 * @param p2 le deuxieme point
 	 * @return un entier representant la distance
@@ -23,7 +27,8 @@ public class UtilitaireConsole {
 	}
 
 	/**
-	 * Verifie si les cases voisines de l'element ne sont pas deja occupe avec un autre element
+	 * Verifie si les cases voisines de l'element ne sont pas deja occupe avec un autre element.
+	 *
 	 * @param p la position de l'element courant
 	 * @param voisins les elements voisins sur l'interface graphique
 	 * @return true si la case n'est pas occupe et false si la case est occupe
@@ -40,8 +45,9 @@ public class UtilitaireConsole {
 		return !trouve;
 	}
 	
-	/** 
-	 * Renvoie le meilleur point a occuper par l'element courant dans la direction de la cible
+	/**
+	 * Renvoie le meilleur point a occuper par l'element courant dans la direction de la cible.
+	 *
 	 * @param depart le point sur lequel se trouve l'element courant
 	 * @param objectif le point sur lequel se trouve la cible
 	 * @param voisins le positionement sur l'interface graphique de tous les elements en vie

@@ -9,13 +9,31 @@ import java.util.Random;
 import serveur.Arene;
 import controle.IConsole;
 
+/**
+ * The Class FaceOff.
+ */
 public class FaceOff extends Duel implements IDuel{
 	
+	/**
+	 * Instantiates a new face off.
+	 *
+	 * @param arene the arene
+	 * @param refAttaquant the ref attaquant
+	 * @param refDefenseur the ref defenseur
+	 * @throws RemoteException the remote exception
+	 */
 	public FaceOff (Arene arene, Remote refAttaquant, Remote refDefenseur) throws RemoteException{
 		
 		super(arene,refAttaquant,refDefenseur);
 	}
 	
+	/**
+	 * Offence.
+	 *
+	 * @param p1 the p1
+	 * @param p2 the p2
+	 * @return the int
+	 */
 	public int offence(Personnage p1, Personnage p2){
 		
 		Random rand = new Random();
@@ -34,6 +52,9 @@ public class FaceOff extends Duel implements IDuel{
 			
 	}
 
+	/* (non-Javadoc)
+	 * @see interaction.IDuel#realiserCombat()
+	 */
 	public int realiserCombat() throws RemoteException {
 		Remote ratt = this.getRefAttaquant();
 		IConsole catt = (IConsole) ratt;

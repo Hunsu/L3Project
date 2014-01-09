@@ -25,43 +25,38 @@ import utilitaires.UtilitaireConsole;
  */
 public class Console extends UnicastRemoteObject implements IConsole {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The Constant port. */
 	private static final int port=5099;	              //port par defaut pour communiquer avec le serveur RMI
-	/**
-	 * @uml.property  name="serveur"
-	 */
+	
+	/** The serveur. @uml.property  name="serveur" */
 	private Remote serveur = null;                    //le serveur avec lequel le controleur communique
-	/**
-	 * @uml.property  name="ve"
-	 * @uml.associationEnd  
-	 */
+	
+	/** The ve. @uml.property  name="ve" @uml.associationEnd */
 	private VueElement ve = null;                     //la vue de l'element (pour l'interface graphique)
-	/**
-	 * @uml.property  name="elem"
-	 * @uml.associationEnd  
-	 */
+	
+	/** The elem. @uml.property  name="elem" @uml.associationEnd */
 	private Element elem = null;                      //l'element pour lequel le controleur est cree
-	/**
-	 * @uml.property  name="voisins"
-	 * @uml.associationEnd  qualifier="valueOf:java.lang.Integer interfaceGraphique.VueElement"
-	 */
+	
+	/** The voisins. @uml.property  name="voisins" @uml.associationEnd  qualifier="valueOf:java.lang.Integer interfaceGraphique.VueElement" */
 	private Hashtable<Integer,VueElement> voisins;    //les vues des voisins sur l'interface graphique
-	/**
-	 * @uml.property  name="pointErrance"
-	 */
+	
+	/** The point errance. @uml.property  name="pointErrance" */
 	private Point pointErrance;                       //le point ou aller errer
-	/**
-	 * @uml.property  name="refRMI"
-	 */
+	
+	/** The ref rmi. @uml.property  name="refRMI" */
 	private int refRMI;                               //la reference (entiere) attribuee par le serveur a la connexion
 	
 	
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param elem l'element pour lequel le controleur est cree
 	 * @param dx la position initiale de l'element sur l'ordonnee (interface graphique)
 	 * @param dy la position initiale de l'element sur l'abscisse (interface graphique)
-	 * @throws RemoteException
+	 * @throws RemoteException the remote exception
 	 */
 	public Console(Element elem, int dx, int dy) throws RemoteException {
 		 //appel au constructeur de la super-classe -> il peut etre implicite
@@ -69,11 +64,6 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		try{
 			//initialisation de l'element pour lequel le controleur est cree
 			this.elem=elem;
-			
-			
-			//position initiale aleatoire
-			//Random r=new Random();
-			//Point pos = new Point(r.nextInt(100),r.nextInt(100));
 			
 			//Creation de la position initiale de la vue de l'element sur l'interface graphique
 			Point pos = new Point(dx,dy);
@@ -108,7 +98,9 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	/**
 	 * Permet au serveur de faire "jouer" un tour a l'element.
 	 * Calcule ses voisins (donnes par le serveur), cherche le plus proche, s'il est a proximite, lance l'interaction sinon se dirige vers lui (s'il existe un plus proche)
-	 * Cette methode est execute chaque seconde  
+	 * Cette methode est execute chaque seconde
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public void run() throws RemoteException {
 		if(this.elem instanceof Objet)
@@ -121,16 +113,17 @@ public class Console extends UnicastRemoteObject implements IConsole {
 			
 		//Hashtable<Integer,VueElement> voisinsInconnus = extraireInconnus(voisins);
 		
-		// Recherche du plus proche, sinon errer
+		//extraire les éléemnents avec lequels on a pas encore joué 
+		//C'est pour éviter de joué avec le même élément plusieurs fois
 		Hashtable<Integer,VueElement> refsInconnus = new Hashtable<Integer,VueElement>();
 		for(Integer ref : voisins.keySet()){
 			if(!elem.getElementsConnus().contains(ref))
 				refsInconnus.put(ref, voisins.get(ref));
 		}
+		// Recherche du plus proche, sinon errer
 		HashMap<Integer, HashMap<Integer,VueElement>> resultat = Strategie.chercherElementProche(ve, refsInconnus);
 		int distPlusProche = resultat.keySet().iterator().next();
 		int refPlusProche =  resultat.get(distPlusProche).keySet().iterator().next();
-		//System.out.println(resultat.get(distPlusProche));
 		VueElement cible = resultat.get(distPlusProche).get(refPlusProche);
 		IConsole console = null;
 		if(cible != null)
@@ -138,12 +131,16 @@ public class Console extends UnicastRemoteObject implements IConsole {
 		
 		//si le plus proche est a proximite
 		if (distPlusProche<=1) { 
+			//si l'élément est un personnage
 			if(console != null && console.getElement() instanceof Personnage){
 				//jeu
 				parler("Je joue avec "+refPlusProche);
+				//on ajoute le personnage à liste des éléments connus
 				ajouterConnu(refPlusProche);
+				//on lance l'interaction
 				((IArene) serveur).interaction(refRMI, refPlusProche);
-			} else{
+			} else{ //il s'agit d'un objet
+				//ramasser
 				parler("Je ramasse l'objet "+refPlusProche);
 				ramasserObjet(console);
 				((IArene) serveur).ramasser(refRMI, refPlusProche);
@@ -153,19 +150,20 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	
 		}
 		//sinon
-		else { 
+		else { //l'element courant se deplace vers le plus proche (s'il existe) sinon il erre
 			if (refPlusProche!=0) {
 				parler("Je me dirige vers "+refPlusProche);
 			}
-			else parler("J'erre..."); 
+			else 
+				parler("J'erre..."); 
 			
-			//l'element courant se deplace vers le plus proche (s'il existe) sinon il erre
 			seDirigerVers(refPlusProche);	
 		}
 	}
 	
 	/**
-	 * Deplace ce sujet d'une case en direction du sujet dont la reference est donnee en parametre
+	 * Deplace ce sujet d'une case en direction du sujet dont la reference est donnee en parametre.
+	 *
 	 * @param ref la reference de l'element cible
 	 */
 	public void seDirigerVers(int ref) {
@@ -222,7 +220,10 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	}
 
 	/**
-	 * Appelle par le serveur pour faire la MAJ du sujet 
+	 * Appelle par le serveur pour faire la MAJ du sujet.
+	 *
+	 * @return La vue de l'élément
+	 * @throws RemoteException 
 	 */
 	public VueElement update() throws RemoteException {
 		VueElement aux=(VueElement) ve.clone();
@@ -231,45 +232,66 @@ public class Console extends UnicastRemoteObject implements IConsole {
 	}
 
 	/**
-	 * Deconnexion du controleur du serveur
-	 * @param cause le message a afficher comme cause de la deconnexion
+	 * Deconnexion du controleur du serveur.
+	 *
+	 * @param cause le message à afficher comme cause de la deconnexion
+	 * @throws RemoteException 
 	 */
 	public void shutDown(String cause) throws RemoteException {
 		System.out.println("Console "+refRMI+" deconnectee : "+cause);
 		System.exit(1);
 	}
 
+	/** 
+	 * @see controle.IConsole#getElement()
+	 */
 	public Element getElement() throws RemoteException {
 		return elem;
 	}
 	
+	/** 
+	 * @see controle.IConsole#getVueElement()
+	 */
 	public VueElement getVueElement() throws RemoteException {
 		return ve;
 	}
 	
+	/**
+	 * @see controle.IConsole#parler(java.lang.String)
+	 */
 	public void parler(String s) throws RemoteException {
 		ve.setPhrase(s);	
 	}
 	
 
+	/**
+	 * @see controle.IConsole#perdreVie(int)
+	 */
 	public void perdreVie(int viePerdue) throws RemoteException {
 		this.elem.setVie(this.elem.getVie()-viePerdue);
 		System.out.println("Ouch, j'ai perdu " + viePerdue + " points de vie. Il me reste " + this.elem.getVie() + " points de vie.");		
 	}
 	
+	/**
+	 * @see controle.IConsole#ramasserObjet(controle.IConsole)
+	 */
 	public void ramasserObjet(IConsole objet) throws RemoteException {
 		objet.getVueElement().setTTL(0);
 		((Personnage) elem).addObjet((Objet) objet.getElement());
-		//((IArene) serveur).ramasser(refRMI, );
 	}
 	
+	/**
+	 * @see controle.IConsole#afficher()
+	 */
 	public String afficher() throws RemoteException{
 		return this.elem.toString();
 	}
 
 	/**
-	 * Ajout l'element dans la liste des elements connus (combattants et equipements)
+	 * Ajout l'element dans la liste des elements connus (combattants et equipements).
+	 *
 	 * @param ref l'element a ajouter
+	 * @throws RemoteException the remote exception
 	 */
 	public void ajouterConnu(int ref) throws RemoteException {
 		elem.ajouterConnu(ref);

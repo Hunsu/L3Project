@@ -10,8 +10,10 @@ import serveur.Arene;
 public class TestServeur {
 
 	/**
-	 * @param args
-	 * @throws Exception 
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception {
 		

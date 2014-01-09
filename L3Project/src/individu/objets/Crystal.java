@@ -1,21 +1,43 @@
 package individu.objets;
 
+/**
+ * The Class Crystal.
+ */
 public class Crystal extends Items {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Instantiates a new crystal.
+	 *
+	 * @param name the name
+	 * @param image the image
+	 * @param classe the classe
+	 */
 	public Crystal(String name, String image,char classe){
 		
 		super(name,image,0,0,0,classe);
 		init(classe);
 	}
 	
+	/**
+	 * Instantiates a new crystal.
+	 *
+	 * @param nom the nom
+	 * @param classe the classe
+	 */
 	public Crystal (String nom,char classe)
 	{
 		super(nom,"",0,0,0,classe);
 		init(classe);
 	}
 	
+	/**
+	 * Inits the.
+	 *
+	 * @param classe the classe
+	 */
 	private void init(char classe){
 		
 		switch(classe){

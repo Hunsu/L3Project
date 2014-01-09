@@ -20,63 +20,61 @@ import javax.swing.JTextArea;
 
 import serveur.IArene;
 
+/**
+ * La classe qui représente l'arene de Jeu.
+ */
 public class AreneJPanel extends JPanel {
 
+	/** La constante serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="jta"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
+	
+	/** The jta. @uml.property  name="jta" @uml.associationEnd  multiplicity="(1 1)" */
 	private JTextArea jta;
 
 	/**
-	 * @author   meradi
+	 * The Enum State.
 	 */
 	enum State {
-		/**
-		 * @uml.property  name="iNIT"
-		 * @uml.associationEnd  
-		 */
-		INIT, /**
-		 * @uml.property  name="pLAYING"
-		 * @uml.associationEnd  
-		 */
+		
+		/** The init. @uml.property  name="iNIT" @uml.associationEnd */
+		INIT, 
+ /** The playing. @uml.property  name="pLAYING" @uml.associationEnd */
 		PLAYING
 	};
 
-	/**
-	 * @uml.property  name="state"
-	 * @uml.associationEnd  
-	 */
+	/** The state. @uml.property  name="state" @uml.associationEnd */
 	private State state = State.INIT; // etat de l'interface
-	/**
-	 * @uml.property  name="serveur"
-	 */
+	
+	/** Le serveur. @uml.property  name="serveur" */
 	private Remote serveur;
-	/**
-	 * @uml.property  name="cnxError"
-	 */
+	
+	/** The cnx error. @uml.property  name="cnxError" */
 	private boolean cnxError = false; // erreur de connexion
 	/*
 	 * liste de tous les elements connectes a l'interface
 	 */
-	/**
-	 * @uml.property  name="world"
-	 */
+	/** The world. @uml.property  name="world" */
 	private ArrayList<VueElement> world = new ArrayList<VueElement>();
 
+	/** Le port. */
 	private static final int port = 5099; // port par defaut pour communiquer
 	// avec le serveur RMI
-	/**
-	 * @uml.property  name="connection"
-	 */
+	/** Le thread pour la connexion. @uml.property  name="connection" */
 	private Thread connection = null; // thread de connexion au serveur
 
 	// Conteneur qui affiche l'arene de jeu
+	/**
+	 * Créer une arene de jeu.
+	 *
+	 * @param jta La fenêtre qui sert à afficher les messages des consoles
+	 */
 	AreneJPanel(JTextArea jta) {
 		this.jta = jta;
 	}
 
+	/** 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics g) {
 		// affiche l'arene comme un rectangle
 		Rectangle rect = this.getBounds();
@@ -108,9 +106,6 @@ public class AreneJPanel extends JPanel {
 			}
 		} else {
 			try {
-				/*File back = new File("image/back.jpeg");
-				BufferedImage backgroundImage = ImageIO.read(back);
-				g.drawImage(backgroundImage, 0, 0, getWidth(),getHeight(), null);*/
 				// mets a jour la liste des elements en vie sur l'arene
 				world = ((IArene) serveur).getWorld();
 
@@ -122,23 +117,15 @@ public class AreneJPanel extends JPanel {
 
 				// pour chaque element en vie sur l'arene
 				for (VueElement s : world) {
-					// recupere sa reference
-					//ref = s.getRef();
-
-					//Random r = new Random(ref);
 
 					// recupere les coordonnes de l'element
 					cx = s.getPoint().x * rect.width / 100;
 					cy = s.getPoint().y * rect.height / 100;
 
-					// construis un oval aux coordonnes cx,cy de taille 8 x 8
+					// Récupérer l'image qui sera afficher pour cet élément
 					File file = new File(s.getControleur().getElement().getImage());
-					if(!file.canRead())
-					{
-						System.out.println("Name : " + file.getAbsolutePath()+file.exists() + s.getControleur().getElement().getImage());
-						continue;
-					}
 					BufferedImage image = ImageIO.read(file);
+					//afficher l'image sur le rectangle
 					g.drawImage(image, cx, cy, this);
 
 					// recupere les phrases dites par l'element
@@ -172,7 +159,7 @@ public class AreneJPanel extends JPanel {
 	}
 
 	/**
-	 * Lance une connexion au serveur dans un thread separe
+	 * Lance une connexion au serveur dans un thread separe.
 	 */
 	public void connect() {
 		connection = new Thread() {

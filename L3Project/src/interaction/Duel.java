@@ -5,29 +5,27 @@ import java.rmi.RemoteException;
 
 import serveur.Arene;
 
+/**
+ * The Class Duel.
+ */
 public abstract class Duel {
 	
-	/**
-	 * @uml.property  name="arene"
-	 * @uml.associationEnd  
-	 */
+	/** The arene. @uml.property  name="arene" @uml.associationEnd */
 	private Arene arene;          //l'arene sur laquelle le jeu a lieu
-	/**
-	 * @uml.property  name="refAttaquant"
-	 * @uml.associationEnd  
-	 */
+	
+	/** The ref attaquant. @uml.property  name="refAttaquant" @uml.associationEnd */
 	private Remote refAttaquant;  //la reference de l'attaquant
-	/**
-	 * @uml.property  name="refDefenseur"
-	 */
+	
+	/** The ref defenseur. @uml.property  name="refDefenseur" */
 	private Remote refDefenseur;  //la reference du defenseur
 	
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param arene l'arene du jeu
 	 * @param refAttaquant la reference de l'attaquant
 	 * @param refDefenseur la reference du defenseur
-	 * @throws RemoteException
+	 * @throws RemoteException the remote exception
 	 */
 	public Duel(Arene arene, Remote refAttaquant, Remote refDefenseur) throws RemoteException{
 		this.arene = arene;
@@ -36,8 +34,10 @@ public abstract class Duel {
 	}
 	
 	/**
-	 * @return
-	 * @throws RemoteException
+	 * Gets the ref attaquant.
+	 *
+	 * @return the ref attaquant
+	 * @throws RemoteException the remote exception
 	 * @uml.property  name="refAttaquant"
 	 */
 	public Remote getRefAttaquant() throws RemoteException {
@@ -45,8 +45,10 @@ public abstract class Duel {
 	}
 
 	/**
-	 * @return
-	 * @throws RemoteException
+	 * Gets the ref defenseur.
+	 *
+	 * @return the ref defenseur
+	 * @throws RemoteException the remote exception
 	 * @uml.property  name="refDefenseur"
 	 */
 	public Remote getRefDefenseur() throws RemoteException {

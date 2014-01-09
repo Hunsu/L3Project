@@ -24,29 +24,25 @@ import utilitaires.UtilitaireConsole;
  */
 public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="port"
-	 */
+	
+	/** The port. @uml.property  name="port" */
 	private int port; // port a utiliser pour la connexion
-	/**
-	 * @uml.property  name="compteur"
-	 */
+	
+	/** The compteur. @uml.property  name="compteur" */
 	private int compteur = 0; // nombre d'elements connectes au serveur
-	/**
-	 * @uml.property  name="elements"
-	 * @uml.associationEnd  qualifier="r:java.rmi.Remote interfaceGraphique.VueElement"
-	 */
+	
+	/** The elements. @uml.property  name="elements" @uml.associationEnd  qualifier="r:java.rmi.Remote interfaceGraphique.VueElement" */
 	private Hashtable<Remote, VueElement> elements = null; // elements connectes
 															// au serveur
 
 	/**
-	 * Constructeur
-	 * 
-	 * @param port
-	 *            le port de connexion
-	 * @throws Exception
-	 */
+															 * Constructeur.
+															 *
+															 * @param port le port de connexion
+															 * @throws Exception the exception
+															 */
 	public Arene(int port) throws Exception {
 		super();
 		this.port = port;
@@ -58,10 +54,10 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	/**
 	 * Fournit une reference (entiere) pour un nouvel element dans l'arene,
 	 * compte les elements la synchro permet de garantir l'acces e un seul
-	 * thread a la fois au compteur++
-	 * 
+	 * thread a la fois au compteur++.
+	 *
 	 * @return reference (entiere) utilisee pour rmi, compter les elements
-	 * @throws RemoteException
+	 * @throws RemoteException the remote exception
 	 */
 	public synchronized int allocateRef() throws RemoteException {
 		compteur++;
@@ -69,7 +65,7 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	}
 
 	/**
-	 * boucle principale du thread serveur
+	 * boucle principale du thread serveur.
 	 */
 	public void run() {
 		TimeoutOp to;
@@ -119,11 +115,10 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	 * Associe ("connecte") la representation d'un element en y associant un
 	 * Remote, ajoute la representation d'un element dans l'arene * la synchro
 	 * permet de garantir qu'on ne fait pas de nouvelle connection pdt un tour
-	 * de jeu
-	 * 
-	 * @param s
-	 *            vue (representation) de l'element
-	 * @throws RemoteException
+	 * de jeu.
+	 *
+	 * @param s vue (representation) de l'element
+	 * @throws RemoteException the remote exception
 	 */
 	public synchronized void connect(VueElement s) throws RemoteException {
 		try {
@@ -140,7 +135,10 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
 	/**
 	 * appele par l'IHM pour afficher une representation de l'arene via RMI, on
-	 * envoie une copie (serialisee) du monde
+	 * envoie une copie (serialisee) du monde.
+	 *
+	 * @return the world
+	 * @throws RemoteException the remote exception
 	 */
 	public ArrayList<VueElement> getWorld() throws RemoteException {
 		ArrayList<VueElement> aux = new ArrayList<VueElement>();
@@ -152,7 +150,12 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
 	/**
 	 * Liste des reference des voisins et leurs coordonnees a partir d'une
-	 * position
+	 * position.
+	 *
+	 * @param pos the pos
+	 * @param ref the ref
+	 * @return the hashtable
+	 * @throws RemoteException the remote exception
 	 */
 	public Hashtable<Integer, VueElement> voisins(Point pos, int ref)
 			throws RemoteException {
@@ -173,17 +176,26 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
 	/**
 	 * Classe permettant de lancer une execution du client (run) dans un thread
-	 * separe, pour pouvoir limiter son temps d'execution via un join(timeout)
-	 * 
+	 * separe, pour pouvoir limiter son temps d'execution via un join(timeout).
 	 */
 	public class TimeoutOp extends Thread {
+		
+		/** The r. */
 		private Remote r;
 
+		/**
+		 * Instantiates a new timeout op.
+		 *
+		 * @param r the r
+		 */
 		TimeoutOp(Remote r) {
 			this.r = r;
 			start();
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		public void run() {
 			try {
 				((IConsole) r).run(); // on lance une execution
@@ -208,12 +220,17 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	}
 
 	/**
-	 * Renvoie le nombre de clients connectes
+	 * Renvoie le nombre de clients connectes.
+	 *
+	 * @return the int
 	 */
 	public int countClients() {
 		return elements.size();
 	}
 
+	/* (non-Javadoc)
+	 * @see serveur.IArene#interaction(int, int)
+	 */
 	public void interaction(int ref, int ref2) throws RemoteException {
 		try {
 			// recupere l'attaquant et le defenseur
@@ -240,6 +257,9 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see serveur.IArene#ramasser(int, int)
+	 */
 	public void ramasser(int ref1, int ref2) throws RemoteException {
 		//recupere l'attaquant et le defenseur
 	     Remote combattant;
@@ -264,10 +284,9 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	}
 
 	/**
-	 * Supprime un element de la liste des elements connectes au serveur
-	 * 
-	 * @param elem
-	 *            l'element a enlever
+	 * Supprime un element de la liste des elements connectes au serveur.
+	 *
+	 * @param elem l'element a enlever
 	 */
 	public void supprimerElement(Remote elem) {
 		this.elements.remove(elem);

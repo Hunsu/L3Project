@@ -7,32 +7,32 @@ import java.rmi.RemoteException;
 import controle.IConsole;
 
 
+/**
+ * The Class VueElement.
+ */
 public final class VueElement implements Serializable {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @uml.property  name="ref"
-	 */
+	
+	/** The ref. @uml.property  name="ref" */
 	private int ref;                                   //reference de l'element sur le serveur
-	/**
-	 * @uml.property  name="point"
-	 */
+	
+	/** The point. @uml.property  name="point" */
 	private Point point;                               //position de l'element
-	/**
-	 * @uml.property  name="ctr"
-	 * @uml.associationEnd  
-	 */
+	
+	/** The ctr. @uml.property  name="ctr" @uml.associationEnd */
 	private IConsole ctr;                              //controleur de l'element
-	/**
-	 * @uml.property  name="phrase"
-	 */
+	
+	/** The phrase. @uml.property  name="phrase" */
 	private String phrase;                             //message communique par l'element
-	/**
-	 * @uml.property  name="tTL"
-	 */
+	
+	/** The ttl. @uml.property  name="tTL" */
 	private int TTL=60*10;							   //duree de vie, max 10 minutes 
 
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param ref la reference sur le serveur
 	 * @param point la position initiale
 	 * @param c le controleur auquel l'element est associe
@@ -46,7 +46,8 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Constructeur
+	 * Constructeur.
+	 *
 	 * @param ref la reference sur le serveur
 	 * @param point la position initiale
 	 * @param c le controleur auquel l'element est associe
@@ -61,7 +62,9 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Renvoie la reference de l'element sur le serveur
+	 * Renvoie la reference de l'element sur le serveur.
+	 *
+	 * @return the ref
 	 * @uml.property  name="ref"
 	 */
 	public int getRef() {
@@ -69,7 +72,9 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Renvoie la duree de vie de l'element
+	 * Renvoie la duree de vie de l'element.
+	 *
+	 * @return the ttl
 	 * @uml.property  name="tTL"
 	 */
 	public int getTTL() {
@@ -77,7 +82,8 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Mets a jour la duree de vie de l'element
+	 * Mets a jour la duree de vie de l'element.
+	 *
 	 * @param tTL  le nouveau temps de vie
 	 * @uml.property  name="tTL"
 	 */
@@ -86,7 +92,9 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Renvoie le point sur lequel l'element se trouve
+	 * Renvoie le point sur lequel l'element se trouve.
+	 *
+	 * @return the point
 	 * @uml.property  name="point"
 	 */
 	public Point getPoint() {
@@ -94,7 +102,9 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Mets a jour la position sur laquelle l'element se trouve
+	 * Mets a jour la position sur laquelle l'element se trouve.
+	 *
+	 * @param point the new point
 	 * @uml.property  name="point"
 	 */
 	public void setPoint(Point point) {
@@ -102,14 +112,18 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Renvoie le controleur auquel l'element est associe
+	 * Renvoie le controleur auquel l'element est associe.
+	 *
+	 * @return the controleur
 	 */
 	public IConsole getControleur(){
 		return this.ctr;
 	}
 
 	/**
-	 * Renvoie le message communique par l'element
+	 * Renvoie le message communique par l'element.
+	 *
+	 * @return the phrase
 	 * @uml.property  name="phrase"
 	 */
 	public String getPhrase(){
@@ -117,7 +131,8 @@ public final class VueElement implements Serializable {
 	}
 	
 	/**
-	 * Reinitialise le message a communiquer par l'element
+	 * Reinitialise le message a communiquer par l'element.
+	 *
 	 * @param phrase  le nouveau message
 	 * @uml.property  name="phrase"
 	 */
@@ -126,7 +141,7 @@ public final class VueElement implements Serializable {
 	}
 
 	/**
-	 * Diminue la duree de vie d'une unite
+	 * Diminue la duree de vie d'une unite.
 	 */
 	public void decrTTL() {
 		if (TTL>0) 
@@ -134,14 +149,18 @@ public final class VueElement implements Serializable {
 	}	
 	
 	/**
-	 * Clone la representation courante de l'element
+	 * Clone la representation courante de l'element.
+	 *
+	 * @return the vue element
 	 */
 	public VueElement clone() {
 		return new VueElement( ref,  point, ctr, phrase, TTL);
 	}
 
 	/**
-	 * Affiche l'etat courant de l'element
+	 * Affiche l'etat courant de l'element.
+	 *
+	 * @return the string
 	 */
 	public String afficher(){
 		try{
