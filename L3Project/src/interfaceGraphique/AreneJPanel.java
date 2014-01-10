@@ -27,7 +27,7 @@ public class AreneJPanel extends JPanel {
 
 	/** La constante serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The jta. @uml.property  name="jta" @uml.associationEnd  multiplicity="(1 1)" */
 	private JTextArea jta;
 
@@ -35,19 +35,19 @@ public class AreneJPanel extends JPanel {
 	 * The Enum State.
 	 */
 	enum State {
-		
+
 		/** The init. @uml.property  name="iNIT" @uml.associationEnd */
-		INIT, 
+		INIT,
  /** The playing. @uml.property  name="pLAYING" @uml.associationEnd */
 		PLAYING
 	};
 
 	/** The state. @uml.property  name="state" @uml.associationEnd */
 	private State state = State.INIT; // etat de l'interface
-	
+
 	/** Le serveur. @uml.property  name="serveur" */
 	private Remote serveur;
-	
+
 	/** The cnx error. @uml.property  name="cnxError" */
 	private boolean cnxError = false; // erreur de connexion
 	/*
@@ -72,12 +72,23 @@ public class AreneJPanel extends JPanel {
 		this.jta = jta;
 	}
 
-	/** 
+	/**
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	public void paintComponent(Graphics g) {
 		// affiche l'arene comme un rectangle
 		Rectangle rect = this.getBounds();
+
+		File back = new File("image/bkg.jpg");
+		BufferedImage backgroundImage;
+		try {
+			backgroundImage = ImageIO.read(back);
+			g.drawImage(backgroundImage, 0, 0, getWidth(),getHeight(), null);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 
 		// si la connexion est en cours ou il y a une erreur
 		if ((state == State.INIT) || (cnxError)) {
