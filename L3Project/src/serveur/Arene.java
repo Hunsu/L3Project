@@ -1,7 +1,11 @@
 package serveur;
 
 import individu.Element;
+import interaction.Duel;
 import interaction.DuelBasic;
+import interaction.FaceOff;
+import interaction.LuckyNumber;
+import interaction.Shifumi;
 import interfaceGraphique.VueElement;
 
 import java.awt.Point;
@@ -14,25 +18,26 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
 
 import controle.IConsole;
 import utilitaires.UtilitaireConsole;
 
 /**
  * Le serveur ou se connectent les Consoles en RMI. En localhost pour l'instant
- * 
+ *
  */
 public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The port. @uml.property  name="port" */
 	private int port; // port a utiliser pour la connexion
-	
+
 	/** The compteur. @uml.property  name="compteur" */
 	private int compteur = 0; // nombre d'elements connectes au serveur
-	
+
 	/** The elements. @uml.property  name="elements" @uml.associationEnd  qualifier="r:java.rmi.Remote interfaceGraphique.VueElement" */
 	private Hashtable<Remote, VueElement> elements = null; // elements connectes
 															// au serveur
@@ -179,7 +184,7 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 	 * separe, pour pouvoir limiter son temps d'execution via un join(timeout).
 	 */
 	public class TimeoutOp extends Thread {
-		
+
 		/** The r. */
 		private Remote r;
 
@@ -240,11 +245,33 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 					+ "/Console" + ref2);
 
 			// cree le duel
-			DuelBasic duel = new DuelBasic(this, (IConsole) attaquant,
-					(IConsole) defenseur);
 
-			// realise combat
-			duel.realiserCombat();
+			Random r = new Random();
+			Duel jeux = null;
+			int jeu = r.nextInt(4);
+			System.out.print("jeu : "+jeu+"\n");
+			switch(jeu){
+			case 0 :
+				DuelBasic duel = new DuelBasic(this, (IConsole) attaquant,
+						(IConsole) defenseur);
+				duel.realiserCombat();
+				break;
+			case 1 :
+				jeux = new FaceOff(this,(IConsole) attaquant,(IConsole) defenseur);
+				jeux.realiserCombat();
+				break;
+			case 2 :
+				jeux = new LuckyNumber(this,(IConsole) attaquant,(IConsole) defenseur);
+				jeux.realiserCombat();
+				break;
+			case 3 :
+				jeux = new Shifumi(this,(IConsole) attaquant,(IConsole) defenseur);
+				jeux.realiserCombat();
+				break;
+				default:
+					break;
+			}
+
 
 			// ajout les elements avec lesquels on a joue dans la liste des
 			// elements connus
@@ -268,7 +295,7 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 			Remote objet = Naming.lookup("rmi://localhost:" + port + "/Console"+ref2);
 			//tester l'objet avant de le ramasser...
 	    	 ((IConsole) combattant).ramasserObjet((IConsole)objet);
-			
+
 		    	 //mets a jour l'etat de l'objet comme ramasse
 	    	 ((IConsole) objet).perdreVie(1);
 		} catch (MalformedURLException e) {
@@ -278,9 +305,9 @@ public class Arene extends UnicastRemoteObject implements IArene, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	     
-		
-	     
+
+
+
 	}
 
 	/**

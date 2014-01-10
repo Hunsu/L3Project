@@ -9,16 +9,16 @@ import serveur.Arene;
  * The Class Duel.
  */
 public abstract class Duel {
-	
+
 	/** The arene. @uml.property  name="arene" @uml.associationEnd */
 	private Arene arene;          //l'arene sur laquelle le jeu a lieu
-	
+
 	/** The ref attaquant. @uml.property  name="refAttaquant" @uml.associationEnd */
 	private Remote refAttaquant;  //la reference de l'attaquant
-	
+
 	/** The ref defenseur. @uml.property  name="refDefenseur" */
 	private Remote refDefenseur;  //la reference du defenseur
-	
+
 	/**
 	 * Constructeur.
 	 *
@@ -32,7 +32,7 @@ public abstract class Duel {
 		this.refAttaquant = refAttaquant;
 		this.refDefenseur = refDefenseur;
 	}
-	
+
 	/**
 	 * Gets the ref attaquant.
 	 *
@@ -53,6 +53,10 @@ public abstract class Duel {
 	 */
 	public Remote getRefDefenseur() throws RemoteException {
 		return refDefenseur;
+	}
+
+	public int realiserCombat() throws RemoteException {
+		return 0;
 	}
 
 }
